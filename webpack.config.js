@@ -3,6 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const faker = require('faker');
 
 const SRC_DIR = path.join(__dirname, 'src');
 const DIST_DIR = path.join(__dirname, 'dist');
@@ -84,20 +85,64 @@ module.exports = {
         },
         setup (app) {
             app.get('/api', (req, res) => {
-                const random = Math.floor(Math.random() * 1000);
+                res.json({
+                    status: true,
+                });
+            });
+
+            app.get('/api/grid', (req, res) => {
+                const data = [
+                    {
+                        id: Math.floor(Math.random() * 1000),
+                        avatar: faker.image.avatar(),
+                        name: faker.name.lastName(),
+                        address: faker.address.streetAddress()
+                    },
+                    {
+                        id: Math.floor(Math.random() * 1000),
+                        avatar: faker.image.avatar(),
+                        name: faker.name.lastName(),
+                        address: faker.address.streetAddress()
+                    },
+                    {
+                        id: Math.floor(Math.random() * 1000),
+                        avatar: faker.image.avatar(),
+                        name: faker.name.lastName(),
+                        address: faker.address.streetAddress()
+                    },
+                    {
+                        id: Math.floor(Math.random() * 1000),
+                        avatar: faker.image.avatar(),
+                        name: faker.name.lastName(),
+                        address: faker.address.streetAddress()
+                    },
+                    {
+                        id: Math.floor(Math.random() * 1000),
+                        avatar: faker.image.avatar(),
+                        name: faker.name.lastName(),
+                        address: faker.address.streetAddress()
+                    },
+                    {
+                        id: Math.floor(Math.random() * 1000),
+                        avatar: faker.image.avatar(),
+                        name: faker.name.lastName(),
+                        address: faker.address.streetAddress()
+                    },
+                    {
+                        id: Math.floor(Math.random() * 1000),
+                        avatar: faker.image.avatar(),
+                        name: faker.name.lastName(),
+                        address: faker.address.streetAddress()
+                    }
+                ];
+
                 setTimeout(() => {
                     res.json({
                         status: true,
-                        code: 200,
-                        data: [
-                            {
-                                id: random,
-                                title: `Title #${random}`
-                            }
-                        ]
+                        data
                     });
-                }, 3000);
-            });
+                }, 2000);
+            })
         }
     }
 

@@ -1,12 +1,12 @@
 <template>
     <div id="app">
         <h1>{{ title }}</h1>
-        <list></list>
+        <grid></grid>
     </div>
 </template>
 
 <script>
-import List from './List.vue';
+import Grid from './Grid.vue';
 
 export default {
     name: 'App',
@@ -17,7 +17,7 @@ export default {
     },
 
     components: {
-        List
+        Grid
     }
 };
 </script>
