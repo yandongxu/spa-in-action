@@ -1,5 +1,10 @@
+const path = require('path');
+
+const SRC_DIR = path.join(__dirname, 'src');
+const DIST_DIR = path.join(__dirname, 'dist');
+
 module.exports = {
-    context: __dirname + '/src',
+    context: SRC_DIR,
 
     entry: {
         app: './app.js'
@@ -7,15 +12,22 @@ module.exports = {
 
     output: {
         filename: '[name].bundle.js',
-        path: __dirname + '/dist'
+        path: DIST_DIR
     },
 
     module: {
         loaders: [
             {
+                test: /\.vue$/,
+                include: [
+                    SRC_DIR
+                ],
+                loader: 'vue-loader'
+            },
+            {
                 test: /\.js$/,
                 include: [
-                    __dirname + '/src'
+                    SRC_DIR
                 ],
                 loader: 'babel-loader',
                 query: {
@@ -29,4 +41,5 @@ module.exports = {
             }
         ]
     }
+
 };

@@ -3,12 +3,23 @@
     "babel-core": "^6.21.0",
     "babel-loader": "^6.2.10",
     "babel-plugin-transform-object-assign": "^6.8.0",
+    "babel-plugin-transform-runtime": "^6.8.0",
     "babel-preset-es2015": "^6.18.0",
+    "babel-runtime": "^6.0.0",
     "chalk-cli": "^3.0.0",
+    "cross-env": "^3.1.4",
+    "css-loader": "^0.26.1",
     "eslint": "^3.13.1",
     "eslint-config-airbnb-base": "^11.0.1",
     "eslint-plugin-html": "^1.7.0",
     "eslint-plugin-import": "^2.2.0",
+    "extract-text-webpack-plugin": "^1.0.1",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.26.0",
+    "vue-hot-reload-api": "^1.2.0",
+    "vue-html-loader": "^1.0.0",
+    "vue-loader": "^8.5.4",
+    "vue-style-loader": "^1.0.0",
     "webpack": "^1.14.0"
   },
   "name": "spa-in-action",
@@ -16,8 +27,11 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "prebuild": "rm -rf dist",
-    "build": "webpack",
+    "dev": "cross-env NODE_ENV=development webpack --progress --hide-modules --watch",
+    "build": "cross-env NODE_ENV=production webpack --progress",
     "postbuild": "chalk bold bgGreen black 'Build Sucess!'"
+  },
+  "dependencies": {
+    "vue": "^1.0.28"
   }
 }

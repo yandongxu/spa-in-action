@@ -1,4 +1,9 @@
-const chalk = require('chalk');
-const mod = require('./mod');
+import Vue from 'vue';
+import App from './components/App.vue';
 
-console.log(chalk.green(mod.name));
+new Vue({
+    el: '#root',
+    components: {
+        App
+    }
+});
