@@ -8,5 +8,20 @@ module.exports = {
     output: {
         filename: '[name].bundle.js',
         path: __dirname + '/dist'
+    },
+
+    module: {
+        loaders: [
+            {
+                test: /\.js$/,
+                include: [
+                    __dirname + '/src'
+                ],
+                loader: 'babel-loader',
+                query: {
+                    presets: ['es2015']
+                }
+            }
+        ]
     }
 };

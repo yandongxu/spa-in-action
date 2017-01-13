@@ -1,3 +1,4 @@
+const chalk = require('chalk');
 const mod = require('./mod');
 
-console.log(mod.name);
+console.log(chalk.green(mod.name));
