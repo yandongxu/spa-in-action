@@ -17,7 +17,7 @@ export default {
     data () {
         return {
             isFetchingList: false,
-            dataset: {}
+            dataset: []
         };
     },
 

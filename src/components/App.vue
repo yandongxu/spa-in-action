@@ -7,6 +7,7 @@
 
 <script>
 import List from './List.vue';
+
 export default {
     name: 'App',
     data () {
