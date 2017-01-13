@@ -1,25 +1,22 @@
 <template>
     <div id="app">
         <h1>{{ title }}</h1>
+        <list></list>
     </div>
 </template>
 
 <script>
-    export default {
-        name: 'App',
-        data () {
-            return {
-                title: 'Application title'
-            };
-        },
-        ready () {
-            console.log('READY');
-        }
-    };
-</script>
+import List from './List.vue';
+export default {
+    name: 'App',
+    data () {
+        return {
+            title: 'Application title'
+        };
+    },
 
-<style scoped>
-#app {
-    background-color: #ccc;
-}
-</style>
+    components: {
+        List
+    }
+};
+</script>

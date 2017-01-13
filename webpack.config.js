@@ -55,6 +55,31 @@ module.exports = {
                 'vendor'
             ]
         }),
-    ]
+    ],
+
+    // webpack dev server
+    devServer: {
+        proxy: {
+            // proxy
+            // 'webservices': 'http://localhost:9090/webservices'
+        },
+        setup (app) {
+            app.get('/api', (req, res) => {
+                const random = Math.floor(Math.random() * 1000);
+                setTimeout(function () {
+                    res.json({
+                        status: true,
+                        code: 200,
+                        data: [
+                            {
+                                id: random,
+                                title: `Title #${random}`
+                            }
+                        ]
+                    });
+                }, 3000);
+            });
+        }
+    }
 
 };
