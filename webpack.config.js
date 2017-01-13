@@ -1,5 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 
 const SRC_DIR = path.join(__dirname, 'src');
 const DIST_DIR = path.join(__dirname, 'dist');
@@ -49,12 +51,25 @@ module.exports = {
     },
 
     plugins: [
+        // 文件分割
         new webpack.optimize.CommonsChunkPlugin({
             names: [
                 // 'runtime',
                 'vendor'
             ]
         }),
+
+        // 自动生成 HTML 文件
+        new HtmlWebpackPlugin({
+            template: path.join(__dirname, 'tpl.ejs'),
+            title: 'My App',
+            filename: path.join(DIST_DIR, 'index.html'),
+            cache: false,
+            alwaysWriteToDisk: true
+        }),
+
+        // NOTE: 解决 HtmlWebpackPlugin 与 WebpackDevServer 搭配使用时, 不能正常生成 html 的问题
+        new HtmlWebpackHarddiskPlugin()
     ],
 
     // webpack dev server
@@ -66,7 +81,7 @@ module.exports = {
         setup (app) {
             app.get('/api', (req, res) => {
                 const random = Math.floor(Math.random() * 1000);
-                setTimeout(function () {
+                setTimeout(() => {
                     res.json({
                         status: true,
                         code: 200,
