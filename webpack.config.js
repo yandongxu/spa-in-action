@@ -20,7 +20,8 @@ module.exports = {
 
     output: {
         filename: '[name].js',
-        path: DIST_DIR
+        path: DIST_DIR,
+        publicPath: '/assets'
     },
 
     module: {
