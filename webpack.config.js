@@ -2,6 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const SRC_DIR = path.join(__dirname, 'src');
 const DIST_DIR = path.join(__dirname, 'dist');
@@ -70,7 +71,9 @@ module.exports = {
         }),
 
         // NOTE: 解决 HtmlWebpackPlugin 与 WebpackDevServer 搭配使用时, 不能正常生成 html 的问题
-        new HtmlWebpackHarddiskPlugin()
+        new HtmlWebpackHarddiskPlugin(),
+
+        new DashboardPlugin()
     ],
 
     // webpack dev server
