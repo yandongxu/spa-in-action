@@ -27,7 +27,7 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "cross-env NODE_ENV=development webpack --progress --hide-modules --watch",
+    "dev": "cross-env NODE_ENV=development webpack --progress --hide-modules -d --watch",
     "build": "cross-env NODE_ENV=production webpack --progress",
     "postbuild": "chalk bold bgGreen black 'Build Sucess!'"
   },

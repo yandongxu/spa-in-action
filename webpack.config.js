@@ -6,6 +6,12 @@ const DIST_DIR = path.join(__dirname, 'dist');
 module.exports = {
     context: SRC_DIR,
 
+    // -d
+    // devtool: '#cheap-module-eval-source-map',
+
+    // -p
+    devtool: '#source-map',
+
     entry: {
         app: './app.js'
     },

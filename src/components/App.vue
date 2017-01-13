@@ -11,6 +11,9 @@
             return {
                 title: 'Application title'
             };
+        },
+        ready () {
+            console.log('READY');
         }
     };
 </script>
