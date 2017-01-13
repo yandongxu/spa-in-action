@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 
 const SRC_DIR = path.join(__dirname, 'src');
 const DIST_DIR = path.join(__dirname, 'dist');
@@ -6,18 +7,17 @@ const DIST_DIR = path.join(__dirname, 'dist');
 module.exports = {
     context: SRC_DIR,
 
-    // -d
+    // webpack -d 会修改 devtool 为 '#cheap-module-eval-source-map'
     // devtool: '#cheap-module-eval-source-map',
-
-    // -p
     devtool: '#source-map',
 
     entry: {
-        app: './app.js'
+        app: './app.js',
+        vendor: ['vue']
     },
 
     output: {
-        filename: '[name].bundle.js',
+        filename: '[name].js',
         path: DIST_DIR
     },
 
@@ -46,6 +46,15 @@ module.exports = {
                 ]
             }
         ]
-    }
+    },
+
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin({
+            names: [
+                // 'runtime',
+                'vendor'
+            ]
+        }),
+    ]
 
 };
