@@ -37,6 +37,8 @@
     "postbuild": "chalk bold bgGreen black 'Build Sucess!'"
   },
   "dependencies": {
+    "jquery": "^3.1.1",
+    "jquery-ui": "^1.12.1",
     "vue": "^1.0.28"
   }
 }

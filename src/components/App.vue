@@ -1,12 +1,14 @@
 <template>
     <div id="app">
         <h1>{{ title }}</h1>
-        <grid></grid>
+        <date-range start="" end=""></date-range>
+        <!-- <grid></grid> -->
     </div>
 </template>
 
 <script>
 import Grid from './Grid.vue';
+import DateRange from './DateRange.vue';
 
 export default {
     name: 'App',
@@ -17,6 +19,7 @@ export default {
     },
 
     components: {
+        DateRange,
         Grid
     }
 };
