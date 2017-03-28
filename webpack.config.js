@@ -3,7 +3,7 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
-const faker = require('faker');
+const server = require('./server');
 
 const SRC_DIR = path.join(__dirname, 'src');
 const DIST_DIR = path.join(__dirname, 'dist');
@@ -13,7 +13,8 @@ module.exports = {
 
     // webpack -d 会修改 devtool 为 '#cheap-module-eval-source-map'
     // devtool: '#cheap-module-eval-source-map',
-    devtool: '#source-map',
+    devtool: process.env.NODE_ENV === 'production' ? null : '#source-map',
+    // devtool: '#source-map',
 
     entry: {
         app: './app.js',
@@ -21,7 +22,7 @@ module.exports = {
     },
 
     output: {
-        filename: '[name].js',
+        filename: '[name].[chunkhash].js',
         path: DIST_DIR,
         publicPath: '/assets'
     },
@@ -83,67 +84,7 @@ module.exports = {
             // proxy
             // 'webservices': 'http://localhost:9090/webservices'
         },
-        setup (app) {
-            app.get('/api', (req, res) => {
-                res.json({
-                    status: true,
-                });
-            });
-
-            app.get('/api/grid', (req, res) => {
-                const data = [
-                    {
-                        id: Math.floor(Math.random() * 1000),
-                        avatar: faker.image.avatar(),
-                        name: faker.name.lastName(),
-                        address: faker.address.streetAddress()
-                    },
-                    {
-                        id: Math.floor(Math.random() * 1000),
-                        avatar: faker.image.avatar(),
-                        name: faker.name.lastName(),
-                        address: faker.address.streetAddress()
-                    },
-                    {
-                        id: Math.floor(Math.random() * 1000),
-                        avatar: faker.image.avatar(),
-                        name: faker.name.lastName(),
-                        address: faker.address.streetAddress()
-                    },
-                    {
-                        id: Math.floor(Math.random() * 1000),
-                        avatar: faker.image.avatar(),
-                        name: faker.name.lastName(),
-                        address: faker.address.streetAddress()
-                    },
-                    {
-                        id: Math.floor(Math.random() * 1000),
-                        avatar: faker.image.avatar(),
-                        name: faker.name.lastName(),
-                        address: faker.address.streetAddress()
-                    },
-                    {
-                        id: Math.floor(Math.random() * 1000),
-                        avatar: faker.image.avatar(),
-                        name: faker.name.lastName(),
-                        address: faker.address.streetAddress()
-                    },
-                    {
-                        id: Math.floor(Math.random() * 1000),
-                        avatar: faker.image.avatar(),
-                        name: faker.name.lastName(),
-                        address: faker.address.streetAddress()
-                    }
-                ];
-
-                setTimeout(() => {
-                    res.json({
-                        status: true,
-                        data
-                    });
-                }, 2000);
-            })
-        }
+        setup: server
     }
 
 };
